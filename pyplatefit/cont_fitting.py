@@ -106,7 +106,7 @@ class Contfit:
             indx = np.array(np.where(zmod == settings['use_z'][imod])).squeeze()
 
             try:
-                tmp = hdulist[np.int(indx)].data[:]
+                tmp = hdulist[int(indx)].data[:]
             except ValueError:
                 sys.exit('ABORT -- requested model metallicity not found!')
 

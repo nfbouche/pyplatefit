@@ -77,7 +77,7 @@ class EquivalentWidth:
         
         for name in ['EQW', 'EQW_ERR', 'CONT_OBS', 'CONT', 'CONT_ERR']:
             if name not in lines_table.colnames:
-                lines_table.add_column(MaskedColumn(name=name, dtype=np.float, length=len(lines_table), mask=True))
+                lines_table.add_column(MaskedColumn(name=name, dtype=np.float32, length=len(lines_table), mask=True))
                 lines_table[name].format = '.2f'
         
         for line in lines_table:

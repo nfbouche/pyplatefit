@@ -747,7 +747,7 @@ def plot_fit(ax, result, line_only=False, abs_line=False, pcont=False,
                     if key not in row.keys():
                         continue
                     val = row[key]
-                    if isinstance(val, (float,np.float)):
+                    if isinstance(val, (float,np.float64)):
                         tval = f"{key}:{val:.2f}"
                     elif val is None:
                         tval = f"{key}:None"
@@ -767,7 +767,7 @@ def plot_fit(ax, result, line_only=False, abs_line=False, pcont=False,
                     if key not in row.keys():
                         continue
                     val = row[key]
-                    if isinstance(val, (float,np.float)):
+                    if isinstance(val, (float,np.float64)):
                         tval = f"{key}:{val:.2f}"
                     elif val is None:
                         tval = f"{key}:None"
