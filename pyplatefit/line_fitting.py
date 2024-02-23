@@ -810,53 +810,53 @@ def init_res(pdata, mcmc, save_proba=False):
                     'LBDA_OBS','PEAK_OBS','LBDA_LEFT','LBDA_RIGHT','FWHM_OBS','NSTD', 
                     'LBDA_LNSTD','LBDA_RNSTD'] 
     for colname in colnames:
-        tablines.add_column(MaskedColumn(name=colname, dtype=np.float64, mask=True))
+        tablines.add_column(MaskedColumn(name=colname, dtype=float, mask=True))
     if mcmc:
         k = list(tablines.columns).index('VEL_ERR')
-        tablines.add_column(MaskedColumn(name='VEL_RTAU', dtype=np.float64, mask=True), index=k+1)
+        tablines.add_column(MaskedColumn(name='VEL_RTAU', dtype=float, mask=True), index=k+1)
         k = list(tablines.columns).index('VDISP_ERR')
-        tablines.add_column(MaskedColumn(name='VDISP_RTAU', dtype=np.float64, mask=True), index=k+1)
+        tablines.add_column(MaskedColumn(name='VDISP_RTAU', dtype=float, mask=True), index=k+1)
         k = list(tablines.columns).index('FLUX_ERR')
-        tablines.add_column(MaskedColumn(name='FLUX_RTAU', dtype=np.float64, mask=True), index=k+1)
+        tablines.add_column(MaskedColumn(name='FLUX_RTAU', dtype=float, mask=True), index=k+1)
         k = list(tablines.columns).index('SKEW_ERR')
-        tablines.add_column(MaskedColumn(name='SKEW_RTAU', dtype=np.float64, mask=True), index=k+1)
+        tablines.add_column(MaskedColumn(name='SKEW_RTAU', dtype=float, mask=True), index=k+1)
         colnames += ['VEL_RTAU','VDISP_RTAU','FLUX_RTAU','SKEW_RTAU']
         if save_proba:
             for key in ['VEL','VDISP','FLUX','SKEW','Z']:
                 k = list(tablines.columns).index(key+'_ERR')
-                tablines.add_column(MaskedColumn(name=key+'_MAX99', dtype=np.float64, mask=True), index=k+1)
-                tablines.add_column(MaskedColumn(name=key+'_MAX95', dtype=np.float64, mask=True), index=k+1)
-                tablines.add_column(MaskedColumn(name=key+'_MIN95', dtype=np.float64, mask=True), index=k+1)
-                tablines.add_column(MaskedColumn(name=key+'_MIN99', dtype=np.float64, mask=True), index=k+1)
+                tablines.add_column(MaskedColumn(name=key+'_MAX99', dtype=float, mask=True), index=k+1)
+                tablines.add_column(MaskedColumn(name=key+'_MAX95', dtype=float, mask=True), index=k+1)
+                tablines.add_column(MaskedColumn(name=key+'_MIN95', dtype=float, mask=True), index=k+1)
+                tablines.add_column(MaskedColumn(name=key+'_MIN99', dtype=float, mask=True), index=k+1)
                 colnames += [key+'_MAX99', key+'_MAX95', key+'_MIN95', key+'_MIN99']
-    tablines.add_column(MaskedColumn(name='BLEND', dtype=np.int64, mask=True))
+    tablines.add_column(MaskedColumn(name='BLEND', dtype=int, mask=True))
     tablines.add_column(MaskedColumn(name='FAMILY', dtype='U20', mask=True), index=0)
     tablines.add_column(MaskedColumn(name='LINE', dtype='U20', mask=True), index=1)
     tablines.add_column(MaskedColumn(name='DNAME', dtype='U20', mask=True), index=3)
     k = list(tablines.columns).index('LINE')
-    tablines.add_column(MaskedColumn(name='ISBLEND', dtype=np.bool, mask=True), index=k+1)     
+    tablines.add_column(MaskedColumn(name='ISBLEND', dtype=bool, mask=True), index=k+1)
     if pdata['lsf'] is not None:
         k = list(tablines.columns).index('VDISP')
-        tablines.add_column(MaskedColumn(name='VDINST', dtype=np.float64, mask=True), index=k)
+        tablines.add_column(MaskedColumn(name='VDINST', dtype=float, mask=True), index=k)
         colnames.append('VDINST')
     if pdata['dble_lyafit']:
         k = list(tablines.columns).index('VDISP')
-        tablines.add_column(MaskedColumn(name='SEP', dtype=np.float64, mask=True), index=k)
+        tablines.add_column(MaskedColumn(name='SEP', dtype=float, mask=True), index=k)
         colnames.append('SEP') 
         k = list(tablines.columns).index('VDISP')
-        tablines.add_column(MaskedColumn(name='SEP_ERR', dtype=np.float64, mask=True), index=k)
+        tablines.add_column(MaskedColumn(name='SEP_ERR', dtype=float, mask=True), index=k)
         colnames.append('SEP_ERR')
         if mcmc:
             k = list(tablines.columns).index('VDISP')
-            tablines.add_column(MaskedColumn(name='SEP_RTAU', dtype=np.float, mask=True), index=k)
+            tablines.add_column(MaskedColumn(name='SEP_RTAU', dtype=float, mask=True), index=k)
             colnames.append('SEP_RTAU') 
             if save_proba:
                 for key in ['SEP']:
                     k = list(tablines.columns).index(key+'_ERR')
-                    tablines.add_column(MaskedColumn(name=key+'_MAX99', dtype=np.float64, mask=True), index=k+1)
-                    tablines.add_column(MaskedColumn(name=key+'_MAX95', dtype=np.float64, mask=True), index=k+1)
-                    tablines.add_column(MaskedColumn(name=key+'_MIN95', dtype=np.float64, mask=True), index=k+1)
-                    tablines.add_column(MaskedColumn(name=key+'_MIN99', dtype=np.float64, mask=True), index=k+1)
+                    tablines.add_column(MaskedColumn(name=key+'_MAX99', dtype=float, mask=True), index=k+1)
+                    tablines.add_column(MaskedColumn(name=key+'_MAX95', dtype=float, mask=True), index=k+1)
+                    tablines.add_column(MaskedColumn(name=key+'_MIN95', dtype=float, mask=True), index=k+1)
+                    tablines.add_column(MaskedColumn(name=key+'_MIN99', dtype=float, mask=True), index=k+1)
                     colnames += [key+'_MAX99', key+'_MAX95', key+'_MIN99', key+'_MIN95']            
     for colname in colnames:
         tablines[colname].format = '.2f'
@@ -871,20 +871,20 @@ def init_res(pdata, mcmc, save_proba=False):
     ztab.add_column(MaskedColumn(name='FAMILY', dtype='U20', mask=True))
     colnames =  ['VEL','VEL_ERR','Z','Z_ERR','Z_INIT','VDISP','VDISP_ERR','SNRMAX','SNRSUM','SNRSUM_CLIPPED']
     for colname in colnames:
-        ztab.add_column(MaskedColumn(name=colname, dtype=np.float64, mask=True))
+        ztab.add_column(MaskedColumn(name=colname, dtype=float, mask=True))
     for colname in colnames:
         ztab[colname].format = '.2f'
     ztab.add_column(MaskedColumn(name='LINE', dtype='U20', mask=True), index=8)
     for colname in ['NL','NL_CLIPPED','NFEV','STATUS']:
-            ztab.add_column(MaskedColumn(name=colname, dtype=np.int64, mask=True))
-    ztab.add_column(MaskedColumn(name='RCHI2', dtype=np.float64, mask=True), index=14)
+            ztab.add_column(MaskedColumn(name=colname, dtype=int, mask=True))
+    ztab.add_column(MaskedColumn(name='RCHI2', dtype=float, mask=True), index=14)
     ztab.add_column(MaskedColumn(name='METHOD', dtype='U25', mask=True))
     if mcmc:
-        ztab.add_column(MaskedColumn(name='NSTEPS', dtype=np.int64, mask=True))
-        ztab.add_column(MaskedColumn(name='RCHAIN', dtype=np.float64, mask=True))
-        ztab.add_column(MaskedColumn(name='NBAD', dtype=np.int64, mask=True))
-        ztab.add_column(MaskedColumn(name='RCHAIN_CLIP', dtype=np.float64, mask=True))
-        ztab.add_column(MaskedColumn(name='NBAD_CLIP', dtype=np.int64, mask=True))
+        ztab.add_column(MaskedColumn(name='NSTEPS', dtype=int, mask=True))
+        ztab.add_column(MaskedColumn(name='RCHAIN', dtype=float, mask=True))
+        ztab.add_column(MaskedColumn(name='NBAD', dtype=float, mask=True))
+        ztab.add_column(MaskedColumn(name='RCHAIN_CLIP', dtype=float, mask=True))
+        ztab.add_column(MaskedColumn(name='NBAD_CLIP', dtype=float, mask=True))
         ztab['RCHAIN'].format = '.2f'
         ztab['RCHAIN_CLIP'].format = '.2f'
     ztab['RCHI2'].format = '.2f'   
