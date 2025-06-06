@@ -185,7 +185,7 @@ class Platefit:
             resfit['ztable'] = resabs.pop('ztable')
             resfit['lines'] = resabs.pop('lines')
 
-        if fitlines or fitabs:
+        if fitlines or (fitabs and resabs is not None):
             resfit['lines'].sort('LBDA_REST')
             resfit['lines'].add_index('LINE')
             resfit['ztable'].add_index('FAMILY')
@@ -202,11 +202,11 @@ class Platefit:
                 resfit['spec_fit'] += resfit['line_fit']
             else:
                 resfit['spec_fit'] = resfit['line_fit']
-        if fitabs:
+        if fitabs and resabs is not None:
             resfit['spec_fitp'] = resabs['abs_fit']
             if fitlines:
                 resfit['spec_fitp'] += resfit['line_fit']
-        if fitabs:
+        if fitabs and resabs is not None:
             resfit['abs_cont'] = resabs['abs_cont']
             resfit['abs_line'] = resabs['abs_line']
             resfit['abs_init'] = resabs['abs_init']
