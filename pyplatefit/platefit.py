@@ -169,10 +169,10 @@ class Platefit:
                 resabs = None
         if eqw and fitcont and fitlines:
             self.eqw.comp_eqw(spec, linespec, z, resline['lines'])
-        if eqw and fitabs:
+        if eqw and (fitabs and resabs is not None):
             self.eqw.comp_eqw(spec, resabs['abs_line'], z, resabs['lines'])
 
-        if fitlines and fitabs:
+        if fitlines and (fitabs and resabs  is not None):
             # add stacked lines and absorption lines result to resline dict
             resfit['ztable'] = vstack([resline.pop('ztable'),
                                        resabs.pop('ztable')])
