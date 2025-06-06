@@ -163,9 +163,10 @@ class Platefit:
                 spnoline = spec - linefit
             else:
                 spnoline = spec
-
-            resabs = self.fit_abslines(spnoline, z, lsf=lsf, **kwargs)
-
+            try:
+                resabs = self.fit_abslines(spnoline, z, lsf=lsf, **kwargs)
+            except:
+                resabs = None
         if eqw and fitcont and fitlines:
             self.eqw.comp_eqw(spec, linespec, z, resline['lines'])
         if eqw and fitabs:
@@ -180,7 +181,7 @@ class Platefit:
         elif fitlines:
             resfit['ztable'] = resline.pop('ztable')
             resfit['lines'] = resline.pop('lines')
-        elif fitabs:
+        elif fitabs and resabs is not None:
             resfit['ztable'] = resabs.pop('ztable')
             resfit['lines'] = resabs.pop('lines')
 
